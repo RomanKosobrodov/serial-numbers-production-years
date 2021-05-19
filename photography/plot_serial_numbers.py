@@ -12,7 +12,11 @@ if __name__ == "__main__":
     sn = np.array(sn_tuple)
 
     plt.figure(num=f"{m} serial numbers", figsize=(10, 6), tight_layout=True)
-    plt.plot(sn[:, 0], sn[:, 1], "k.-")
+    if sn.shape[1] == 3:
+        for year, start, end in sn:
+            plt.plot((year, year), (start, end), "k-")
+    else:
+        plt.plot(sn[:, 0], sn[:, 1], "k.-")
     plt.xlabel("Production year")
     plt.ylabel("Serial number")
     axes = plt.gca()
